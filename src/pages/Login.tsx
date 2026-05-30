@@ -1,4 +1,12 @@
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL ?? "http://localhost:5000"
+).replace(/\/$/, "");
+
 const Login = () => {
+  const handleGithubLogin = () => {
+    window.location.href = `${API_BASE_URL}/api/auth/github`;
+  };
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#0b1020] text-white">
       <section className="relative flex min-h-screen items-center justify-center px-5 py-10">
@@ -58,6 +66,7 @@ const Login = () => {
 
             <button
               className="group flex h-[52px] w-full items-center justify-center gap-3 rounded-lg bg-white px-5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-950/30 transition hover:-translate-y-0.5 hover:bg-cyan-100 focus:outline-none focus:ring-4 focus:ring-cyan-400/30"
+              onClick={handleGithubLogin}
               type="button"
             >
               <svg
@@ -80,7 +89,7 @@ const Login = () => {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-500">scope</span>
-                <span>repo:read</span>
+                <span>read:user user:email</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-500">status</span>
